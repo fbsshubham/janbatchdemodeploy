@@ -25,8 +25,7 @@ public class HibernateConfig {
 			        .getResourceAsStream("application.properties");
 			props.load(is);
 
-			props.setProperty("hibernate.connection.url",
-			        System.getenv("DB_URL"));
+		
 			props.setProperty("hibernate.connection.username",
 			        System.getenv("DB_USERNAME"));
 			props.setProperty("hibernate.connection.password",
