@@ -33,6 +33,12 @@ public class StudentController {
 		studentService.wishBirthDay();
 		
 	}
+	
+	@GetMapping("/test")
+	public String test()
+	{
+		return "sucess";
+	}
 
 	@GetMapping("/getallstudents")
 	public ResponseDTO<Student> getAllStudents() throws IOException {
