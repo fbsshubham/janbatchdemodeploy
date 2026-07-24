@@ -20,16 +20,26 @@ public class HibernateConfig {
 	{
 		try {
 			System.out.println("Hibernate config hone lage");
-		Properties props=new Properties();
-		InputStream is= HibernateConfig.class.getClassLoader().getResourceAsStream("application.properties");
-		props.load(is);
+			Properties props = new Properties();
+			InputStream is = HibernateConfig.class.getClassLoader()
+			        .getResourceAsStream("application.properties");
+			props.load(is);
+
+			props.setProperty("hibernate.connection.url",
+			        System.getenv("DB_URL"));
+			props.setProperty("hibernate.connection.username",
+			        System.getenv("DB_USERNAME"));
+			props.setProperty("hibernate.connection.password",
+			        System.getenv("DB_PASSWORD"));
+
+			Configuration config = new Configuration();
+			config.setProperties(props);
+			config.addAnnotatedClass(Student.class);
+			config.addAnnotatedClass(Address.class);
+
+			sf = config.buildSessionFactory();
 		 
-		Configuration config=new Configuration();
-		config.setProperties(props);
-		config.addAnnotatedClass(Student.class);
-		config.addAnnotatedClass(Address.class);
 		
-		sf=config.buildSessionFactory();
 		}catch(IOException e)
 		{
 			e.printStackTrace();
